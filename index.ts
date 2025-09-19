@@ -44,14 +44,10 @@ async function transact(
   await txn.sign(privates).send();
 }
 
-{
-  const txn = await Mina.transaction(feePayer, async () => {
-    AccountUpdate.fundNewAccount(feePayer);
-    await contract.deploy();
-  })
-  await txn.prove();
-  await txn.sign([feePayer.key, contractAcct.key]).send();
-}
+await transact(feePayer, [feePayer.key, contractAcct.key], async () => {
+  AccountUpdate.fundNewAccount(feePayer);
+  await contract.deploy();
+})
 
 log(Mina.getAccount(contractAcct).zkapp?.appState.map((state, idx) => `${idx}: ${state.toString()}`).join("\n"));
 
