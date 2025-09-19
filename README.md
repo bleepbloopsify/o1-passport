@@ -125,3 +125,11 @@ Damn this verification takes a while, 10 seconds for a single comparison?
 ---
 
 Also, how am I supposed to use `Field` outside of `transaction`? I wanted to return the boolean into js-land, but Ocaml seemed _quite_ unhappy with the whole ordeal.
+
+---
+
+```
+const allowed = this.allowed.get();
+this.allowed.requireEquals(allowed);
+```
+To be blunt, making someone write this should be illegal
