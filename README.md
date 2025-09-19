@@ -83,3 +83,45 @@ false
 
 Note that `Provable.log` is called twice, each time we attempt to `prove` the transaction.
 
+
+## Commentary on the process
+
+Mina has a global `transaction` object, that prevents us from creating multiple promises and attempting to prove in parallel.
+
+---
+
+Holy package size batman, 27mb? What is that, a house? (for ref, usual npm packages are kbs)
+
+---
+
+Need to use decorators?;
+```
+"experimentalDecorators": true, // needed for decorators
+"emitDecoratorMetadata": true, // needed for decorators
+"preserveSymlinks": true,
+```
+My tsconfig was hilariously upset, and I don't see docs anywhere for this.
+
+I basically copied this out of the o1js repository.
+
+---
+
+Lack of documentation
+
+I'm very surprised we don't have a `Quickstart` or something for experienced developers to just hot-drop in. Seems like an easy barrier to entry to cross.
+
+---
+
+Same vein, why is the first-scroll on our github repo so enourmous? I see that we're attempting to move scripts in, so thats at least a good start :p
+
+---
+
+I wasn't sure if I could use a dictionary or an array in my `Field` objects, so I just used a single Uint64. There should be a reference for this somewhere, right?
+
+---
+
+Damn this verification takes a while, 10 seconds for a single comparison?
+
+---
+
+Also, how am I supposed to use `Field` outside of `transaction`? I wanted to return the boolean into js-land, but Ocaml seemed _quite_ unhappy with the whole ordeal.
