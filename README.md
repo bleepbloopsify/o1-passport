@@ -132,4 +132,4 @@ Also, how am I supposed to use `Field` outside of `transaction`? I wanted to ret
 const allowed = this.allowed.get();
 this.allowed.requireEquals(allowed);
 ```
-To be blunt, making someone write this should be illegal
+This feels like the API has a footgun built into it, we probably want an implicit proof here
